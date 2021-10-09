@@ -8,7 +8,6 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 call dein#begin('~/.cache/dein')
-
 " Let dein manage dein
 call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 if !has('nvim')
