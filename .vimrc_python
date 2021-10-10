@@ -12,6 +12,7 @@ call dein#add('Shougo/vimproc.vim', {'do': g:make})
 "" Python Bundle
 call dein#add('davidhalter/jedi-vim')
 call dein#add('raimon49/requirements.txt.vim', {'for': 'requirements'})
+call dein#add('fisadev/vim-isort')
 
 
 "*****************************************************************************

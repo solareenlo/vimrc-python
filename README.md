@@ -5,6 +5,7 @@
 ```shell
 python3 -m pip install flake8
 python3 -m pip install --upgrade autopep8
+python3 -m pip install isort
 ```
 
 ## References
