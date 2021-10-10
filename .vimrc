@@ -8,6 +8,7 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 call dein#begin('~/.cache/dein')
+
 " Let dein manage dein
 call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 if !has('nvim')
@@ -54,26 +55,27 @@ call dein#add('junegunn/fzf.vim')
 " Required:
 filetype plugin indent on
 
-syntax enable
-set number
-" let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-set background=dark
-colorscheme solarized8
 
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+"" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 
-set autoindent
+"" Tabs. May be overridden by autocmd rules
 set tabstop=4
+set softtabstop=0
 set shiftwidth=4
 set smarttab
 " set expandtab
+
+set autoindent
 set encoding=utf-8
 set showmatch
 set shortmess-=S
-set cursorline
-set ignorecase
-set smartcase
-set hlsearch
 set whichwrap=b,s,h,l,<,>,[,],~
 set clipboard+=unnamed,autoselect
 setlocal spell spelllang=en_us
@@ -83,6 +85,21 @@ if exists('$SHELL')
 else
 	set shell=/bin/sh
 endif
+
+
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************
+syntax enable
+set number
+set cursorline
+set ruler
+
+"" Color
+" let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set background=dark
+colorscheme solarized8
 
 
 "-------------------------------------------------------------------------------
@@ -118,9 +135,9 @@ endif
 "-------------------------------------------------------------------------------
 if has("autocmd")
 	autocmd BufReadPost *
-				\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-				\   exe "normal! g'\"" |
-				\ endif
+		\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+		\   exe "normal! g'\"" |
+		\ endif
 endif
 
 
@@ -140,11 +157,11 @@ let $FZF_DEFAULT_OPTS = '--preview "bat --style=numbers --color=always --line-ra
 nnoremap <silent> <Leader>r :<C-u>silent call <SID>find_rip_grep()<CR>
 function! s:find_rip_grep() abort
 	call fzf#vim#grep(
-				\   'rg --ignore-file ~/.ignore --column --line-number --no-heading --hidden --smart-case .+',
-				\   1,
-				\   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
-				\   0,
-				\ )
+		\   'rg --ignore-file ~/.ignore --column --line-number --no-heading --hidden --smart-case .+',
+		\   1,
+		\   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%', '?'),
+		\   0,
+		\ )
 endfunction
 
 
@@ -166,11 +183,11 @@ function! s:isAtStartOfLine(mapping)
 endfunction
 
 inoreabbrev <expr> <bar><bar>
-			\ <SID>isAtStartOfLine('\|\|') ?
-			\ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+		\ <SID>isAtStartOfLine('\|\|') ?
+		\ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
 inoreabbrev <expr> __
-			\ <SID>isAtStartOfLine('__') ?
-			\ '<c-o>:silent! TableModeDisable<cr>' : '__'
+		\ <SID>isAtStartOfLine('__') ?
+		\ '<c-o>:silent! TableModeDisable<cr>' : '__'
 
 let g:table_mode_corner = '|'
 
